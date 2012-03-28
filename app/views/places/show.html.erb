@@ -1,0 +1,40 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Title:</b>
+  <%= @place.title %>
+</p>
+
+<p>
+  <b>Content:</b>
+  <%= @place.content %>
+</p>
+
+<p>
+  <b>Picture:</b>
+  <%= @place.picture %>
+</p>
+
+<p>
+  <b>Lat:</b>
+  <%= @place.lat %>
+</p>
+
+<p>
+  <b>Long:</b>
+  <%= @place.long %>
+</p>
+
+<p>
+  <b>Tag:</b>
+  <%= @place.tag %>
+</p>
+
+<p>
+  <b>Vote:</b>
+  <%= @place.vote %>
+</p>
+
+
+<%= link_to 'Edit', edit_place_path(@place) %> |
+<%= link_to 'Back', places_path %>
