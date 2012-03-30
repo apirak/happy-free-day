@@ -1,15 +1,22 @@
 <p id="notice"><%= notice %></p>
-
+<%#render :partial => "admin/routes/place_in_route"%>
 <p>
   <b>Title:</b>
   <%= @route.title %>
 </p>
 
 <p>
-  <b>Order:</b>
-  <%= @route.order %>
+  <b>Sequence:</b>
+  <%= @route.sequence %>
 </p>
 
+<p>
+ <b> Place in this Route </b>
+ 	<%@route.places_routes.each do |pr| %>
+ 		<%pid = pr.place_id%>
+ 		<%=Place.find(pid).title%>
+ 	<%end%>
+</p>
 
 <%= link_to 'Edit', edit_route_path(@route) %> |
 <%= link_to 'Back', routes_path %>

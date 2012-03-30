@@ -12,7 +12,7 @@
 <% @routes.each do |route| %>
   <tr>
     <td><%= route.title %></td>
-    <td><%= route.order %></td>
+    <td><%= route.sequence %></td>
     <td><%= link_to 'Show', route %></td>
     <td><%= link_to 'Edit', edit_route_path(route) %></td>
     <td><%= link_to 'Destroy', route, confirm: 'Are you sure?', method: :delete %></td>

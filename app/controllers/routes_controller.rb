@@ -4,21 +4,17 @@ class RoutesController < ApplicationController
   def index
     @routes = Route.all
 
-    respond_to do |format|
-      format.html # index.html.erb
-      format.json { render json: @routes }
-    end
+    
   end
 
   # GET /routes/1
   # GET /routes/1.json
   def show
     @route = Route.find(params[:id])
-
-    respond_to do |format|
-      format.html # show.html.erb
-      format.json { render json: @route }
-    end
+    # respond_to do |format|
+    #   format.html # show.html.erb
+    #   format.json { render json: @route }
+    # end
   end
 
   # GET /routes/new
