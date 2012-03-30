@@ -1,0 +1,13 @@
+ <p>
+ <b>Title</b> : <%= route.title %>
+ <br>
+ <b>Sequence</b>: <%= route.sequence %>
+<br>
+<b> Place in this Route </b>
+<br>
+ 	<% tpr = route.places_routes %>
+ 	<% tpr.sort_by! {|a| a.sequence} %>
+ 	<% tpr.each do |pr| %>
+ 		<%=pr.sequence %>. <%=pr.place.title %><br>
+ 	<%end%>
+</p>
