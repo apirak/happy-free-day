@@ -5,9 +5,7 @@
 <br>
 <b> Place in this Route </b>
 <br>
- 	<% tpr = route.places_routes %>
- 	<% tpr.sort_by! {|a| a.sequence} %>
- 	<% tpr.each do |pr| %>
- 		<%=pr.sequence %>. <%=pr.place.title %><br>
- 	<%end%>
+	<% array = route.places.order('"places_routes"."sequence"').all.each_with_index do |v,i| %>
+		<%= i+1 %>. <%= v.title %> <br>
+	<% end %>
 </p>

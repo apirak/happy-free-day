@@ -1,1 +1,1 @@
-json.routes Route.order("sequence ASC").all, :title
+json.routes Route.order("sequence ASC").all, :title, :id

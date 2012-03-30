@@ -15,10 +15,10 @@ class PlacesController < ApplicationController
   def show
     @place = Place.find(params[:id])
 
-    respond_to do |format|
-      format.html # show.html.erb
-      format.json { render json: @place }
-    end
+    # respond_to do |format|
+    #   format.html # show.html.erb
+    #   format.json { render json: @place }
+    # end
   end
 
   # GET /places/new
