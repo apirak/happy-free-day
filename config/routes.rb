@@ -1,4 +1,6 @@
 Happy::Application.routes.draw do
+  get "places_routes/index"
+
   ActiveAdmin.routes(self)
 
   devise_for :admin_users, ActiveAdmin::Devise.config
@@ -7,6 +9,7 @@ Happy::Application.routes.draw do
 
   resources :places
 
+  resources :places_routes
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

@@ -1,0 +1,25 @@
+<%= stylesheet_link_tag "jquery-ui-1.8.18.custom" %>
+<%= javascript_include_tag "jquery-1.7.1.min","jquery-ui-1.8.18.custom.min" %>
+<script type="text/javascript"> 
+function save(){
+
+}
+$(document).ready(function() { 
+   $("#place-route,#places").sortable({ 
+    dropOnEmpty : true,
+    update: function() { 
+    },
+  }).disableSelection();
+}); 
+</script>
+
+<!-- SET min-height so these lists will be possible to drop back if they are empty -->
+
+<b> Routes Order </b>
+
+<ol id="routes" style="min-height:50px">
+	<% Route.all.each_with_index do |v,i| %>
+		<li class="old"> <div id=<%= v.id %>><%=v.title%></div> </li>
+	<% end %>
+</ol>
+<input type="submit" value="save" onclick="save()">

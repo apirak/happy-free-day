@@ -1,11 +1,59 @@
- <p>
- <b>Title</b> : <%= route.title %>
- <br>
- <b>Sequence</b>: <%= route.sequence %>
-<br>
-<b> Place in this Route </b>
-<br>
+<%= stylesheet_link_tag "jquery-ui-1.8.18.custom" %>
+<%= javascript_include_tag "jquery-1.7.1.min","jquery-ui-1.8.18.custom.min" %>
+<script type="text/javascript"> 
+function save(){
+  var myForm = document.createElement("form");
+  myForm.method="post";
+  myForm.action="../../places_routes"
+  var string = "";
+  $('ol.connected').children().each(function(index){
+        string += this.children[0].id+","
+        //window.location = "../../places_routes"
+  });
+  console.log(string);
+  var valueInput = document.createElement("input");
+  valueInput.setAttribute("name","string");
+  valueInput.setAttribute("value",string);
+  myForm.appendChild(valueInput);
+
+  var routeInput = document.createElement("input");
+  routeInput.setAttribute("name","route");
+  routeInput.setAttribute("value","<%=route.id%>");
+  myForm.appendChild(routeInput);
+
+  document.body.appendChild(myForm);
+  myForm.submit();
+  document.body.removeChild(myForm);
+}
+$(document).ready(function() { 
+  $("#place-route,#places").sortable({ 
+    //handle : '.handle', 
+    dropOnEmpty : true,
+    connectWith: ".connected",
+    update: function() { 
+        //console.log($(this))
+    },
+  }).disableSelection();
+}); 
+</script>
+ <b>Title</b> : <%= route.title %> <br>
+ <b>Sequence</b>: <%= route.sequence %> <br>
+ <b>Photo</b>: <%= image_tag route.photo.url() %> <br>
+<!-- SET min-height so these lists will be possible to drop back if they are empty -->
+
+<b> Places in this Route </b>
+
+<ol id="place-route" class="connected" style="min-height:50px">
 	<% array = route.places.order('"places_routes"."sequence"').all.each_with_index do |v,i| %>
-		<%= i+1 %>. <%= v.title %> <br>
+		<li class="old"> <div id=<%= v.id %>><%=v.title%></div> </li>
 	<% end %>
-</p>
+</ol>
+
+<b> Available Places </b>
+
+<ul id="places" class="connected" style="min-height:50px">
+	<% array = (Place.all-route.places).each do |p| %>
+		<li class="new"><div id=<%= p.id %>><%=p.title%></div> </li>
+	<% end %>
+</ul>
+<input type="submit" value="save" onclick="save()">

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120329080212) do
+ActiveRecord::Schema.define(:version => 20120403095634) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.string   "resource_id",   :null => false
@@ -49,13 +49,16 @@ ActiveRecord::Schema.define(:version => 20120329080212) do
   create_table "places", :force => true do |t|
     t.string   "title"
     t.text     "content"
-    t.string   "picture"
     t.float    "lat"
     t.float    "long"
     t.string   "tag"
     t.integer  "vote"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at",         :null => false
+    t.datetime "updated_at",         :null => false
+    t.string   "photo_file_name"
+    t.string   "photo_content_type"
+    t.integer  "photo_file_size"
+    t.datetime "photo_updated_at"
   end
 
   create_table "places_routes", :force => true do |t|
@@ -64,13 +67,19 @@ ActiveRecord::Schema.define(:version => 20120329080212) do
     t.integer  "sequence"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
+    t.integer  "x"
+    t.integer  "y"
   end
 
   create_table "routes", :force => true do |t|
     t.string   "title"
     t.integer  "sequence"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at",         :null => false
+    t.datetime "updated_at",         :null => false
+    t.string   "photo_file_name"
+    t.string   "photo_content_type"
+    t.integer  "photo_file_size"
+    t.datetime "photo_updated_at"
   end
 
 end
