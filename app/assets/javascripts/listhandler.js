@@ -41,7 +41,7 @@ $(document).ready(function() {
         } 
     }
   });
-  $("#place").draggable({
+  $(".new").draggable({
     connectToSortable: "#place-route",
     helper: "clone",
     revert: "invalid"
