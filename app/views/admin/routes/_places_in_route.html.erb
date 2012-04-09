@@ -1,41 +1,5 @@
 <%= stylesheet_link_tag "jquery-ui-1.8.18.custom" %>
-<%= javascript_include_tag "jquery-1.7.1.min","jquery-ui-1.8.18.custom.min" %>
-<script type="text/javascript"> 
-function save(){
-  var myForm = document.createElement("form");
-  myForm.method="post";
-  myForm.action="../../places_routes"
-  var string = "";
-  $('ol.connected').children().each(function(index){
-        string += this.children[0].id+","
-        //window.location = "../../places_routes"
-  });
-  console.log(string);
-  var valueInput = document.createElement("input");
-  valueInput.setAttribute("name","string");
-  valueInput.setAttribute("value",string);
-  myForm.appendChild(valueInput);
-
-  var routeInput = document.createElement("input");
-  routeInput.setAttribute("name","route");
-  routeInput.setAttribute("value","<%=route.id%>");
-  myForm.appendChild(routeInput);
-
-  document.body.appendChild(myForm);
-  myForm.submit();
-  document.body.removeChild(myForm);
-}
-$(document).ready(function() { 
-  $("#place-route,#places").sortable({ 
-    //handle : '.handle', 
-    dropOnEmpty : true,
-    connectWith: ".connected",
-    update: function() { 
-        //console.log($(this))
-    },
-  }).disableSelection();
-}); 
-</script>
+<%= javascript_include_tag "jquery-1.7.1.min","jquery-ui-1.8.18.custom.min","listhandler" %>
  <b>Title</b> : <%= route.title %> <br>
  <b>Sequence</b>: <%= route.sequence %> <br>
  <b>Photo</b>: <%= image_tag route.photo.url() %> <br>
@@ -52,8 +16,8 @@ $(document).ready(function() {
 <b> Available Places </b>
 
 <ul id="places" class="connected" style="min-height:50px">
-	<% array = (Place.all-route.places).each do |p| %>
-		<li class="new"><div id=<%= p.id %>><%=p.title%></div> </li>
+	<% array = (Place.all).each do |p| %>
+		<li id="place" class="new"><div id=<%= p.id %>><%=p.title%></div> </li>
 	<% end %>
 </ul>
 <input type="submit" value="save" onclick="save()">
